@@ -11,4 +11,8 @@ class Habitacion extends Model
 
     protected $fillable = ['numero', 'tipo_id', 'estado'];
 
+    public function tipo_habi()
+    {
+        return $this->belongsTo(TipoHabitacion::class, 'tipo_id');
+    }
 }

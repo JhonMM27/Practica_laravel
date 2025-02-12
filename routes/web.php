@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Habitacion;
 use App\Models\Reserva;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Route;
@@ -9,14 +10,18 @@ Route::get('/', function () {
 });
 
 // Route::get('/usuarios',
-Route::get('usuarios', function(){
-    $categorias = Usuario::all();
-    return $categorias;
+Route::get('/usuarios', function(){
+    $usuario = Usuario::all();
+    return $usuario;
 });
 
-Route::get('reservas', function(){
-    // $producto = Producto::all();
-    $producto = Reserva::with('cliente')->get();
-    // $producto = Reserva::with('habitacion')->get();
-    return $producto;
+Route::get('/reservas', function(){
+    // $cliente = Reserva::with('cliente')->get();
+    $cliente = Reserva::with('habitacion')->get();
+    return $cliente;
+});
+
+Route::get('/habitaciones', function(){
+    $habitacion = Habitacion::with('tipo_habi')->get();
+    return $habitacion;
 });
